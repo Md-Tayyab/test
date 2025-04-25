@@ -47,4 +47,4 @@ Note:
 -----
 For RHEL/CentOS systems, use `yum download` or `dnf download` on an online system to get .rpm packages with dependencies.
 For Windows systems, use StackBuilder to download PostGIS installer, then transfer it to the offline system.
-
+//sudo rpm -ivh postgis*.rpm
