@@ -1,0 +1,50 @@
+How to Install PostGIS Offline (Without Internet Access)
+========================================================
+
+Step 1: Get PostGIS Packages on a Machine with Internet Access
+--------------------------------------------------------------
+1. Check your PostgreSQL version:
+   psql -V
+
+2. Download required packages:
+   For Ubuntu/Debian:
+   sudo apt download postgis postgresql-<version>-postgis-3
+
+3. Download dependencies:
+   sudo apt-get install --download-only postgis
+
+4. All .deb files will be available in:
+   /var/cache/apt/archives/
+
+Step 2: Transfer Packages to the Offline Machine
+-----------------------------------------------
+- Use a USB drive or SCP to move all the .deb files to the offline system.
+
+Step 3: Install PostGIS on the Offline Machine
+---------------------------------------------
+1. Copy the .deb files to a folder.
+2. Open terminal in that folder and run:
+   sudo dpkg -i *.deb
+
+Step 4: Enable PostGIS in Your PostgreSQL Database
+--------------------------------------------------
+1. Connect to PostgreSQL:
+   psql -U your_username -d your_database
+
+2. Run:
+   CREATE EXTENSION postgis;
+
+Optional:
+---------
+- To check if PostGIS is installed correctly:
+  SELECT PostGIS_version();
+
+- To enable additional features:
+  CREATE EXTENSION postgis_topology;
+  CREATE EXTENSION postgis_raster;
+
+Note:
+-----
+For RHEL/CentOS systems, use `yum download` or `dnf download` on an online system to get .rpm packages with dependencies.
+For Windows systems, use StackBuilder to download PostGIS installer, then transfer it to the offline system.
+
